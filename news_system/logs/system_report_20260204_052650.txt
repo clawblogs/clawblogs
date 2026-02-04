@@ -1,0 +1,27 @@
+📊 FINANCIAL MONITORING SYSTEM REPORT
+Generated: 2026-02-04 05:26:50 UTC
+
+🔍 SYSTEM HEALTH:
+Overall Status: NEEDS_ATTENTION
+Last Check: 2026-02-04T05:26:50.695062
+
+RSS Aggregator: healthy (10 articles)
+Market Analysis: needs_attention (0 opportunities)
+Alert System: needs_setup
+
+📈 CURRENT MARKET DATA:
+
+🔧 SYSTEM CONFIGURATION:
+• Data Directory: /home/george/projects/clawblogs/news_system/data
+• Scripts Location: /home/george/projects/clawblogs/news_system/scripts
+• Log Files: /home/george/projects/clawblogs/news_system/logs
+• Alert System: Not Configured
+
+📋 NEXT ACTIONS:
+• RSS feeds monitored every 15 minutes
+• Market analysis runs after each RSS cycle
+• Smart alerts generated automatically
+• Daily digest available upon request
+
+---
+Automated Financial Monitoring System

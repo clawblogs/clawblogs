@@ -1,0 +1,128 @@
+{
+  "alert_thresholds": {
+    "min_news_score": 15,
+    "min_confidence": 0.7,
+    "critical_score": 25,
+    "volatility_threshold": 0.8
+  },
+  "timing_alerts": {
+    "enabled": true,
+    "check_interval_minutes": 60,
+    "optimal_windows": ["open", "mid_morning", "afternoon"],
+    "avoid_windows": ["lunch"],
+    "trading_hours_only": false
+  },
+  "news_alerts": {
+    "enabled": true,
+    "immediate_keywords": [
+      "federal reserve",
+      "fed rate",
+      "earnings",
+      "market crash",
+      "stock market",
+      "inflation",
+      "recession",
+      "merger",
+      "acquisition",
+      "bitcoin",
+      "cryptocurrency"
+    ],
+    "digest_frequency": "daily",
+    "max_daily_alerts": 15,
+    "keyword_weights": {
+      "federal reserve": 20,
+      "earnings": 15,
+      "market crash": 25,
+      "inflation": 12,
+      "recession": 15,
+      "merger": 10,
+      "acquisition": 10
+    }
+  },
+  "signal_alerts": {
+    "enabled": true,
+    "min_signal_strength": 6,
+    "max_signal_age_hours": 6,
+    "signal_types": {
+      "fed_decision": {
+        "min_strength": 8,
+        "priority": "critical"
+      },
+      "earnings_impact": {
+        "min_strength": 7,
+        "priority": "high"
+      },
+      "volatility_spike": {
+        "min_strength": 6,
+        "priority": "high"
+      },
+      "technical_breakout": {
+        "min_strength": 6,
+        "priority": "medium"
+      }
+    }
+  },
+  "delivery": {
+    "method": "console",
+    "webhook_url": null,
+    "console_formatting": {
+      "show_timestamps": true,
+      "show_confidence": true,
+      "show_actionability": true,
+      "color_coded_priority": true
+    },
+    "email": {
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": null,
+      "password": null,
+      "to_addresses": [],
+      "use_tls": true
+    },
+    "rate_limiting": {
+      "timing": 3600,
+      "news": 1800,
+      "signal": 7200,
+      "summary": 86400,
+      "fed_alert": 3600,
+      "earnings_alert": 7200,
+      "market_crash": 300
+    }
+  },
+  "data_retention": {
+    "article_retention_days": 30,
+    "alert_history_days": 90,
+    "cleanup_interval_hours": 24
+  },
+  "market_hours": {
+    "timezone": "America/New_York",
+    "trading_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "market_open": "09:30",
+    "market_close": "16:00",
+    "pre_market_start": "04:00",
+    "after_hours_end": "20:00"
+  },
+  "scoring": {
+    "base_score_weights": {
+      "high_impact_keywords": 10,
+      "medium_impact_keywords": 5,
+      "source_reliability": {
+        "critical": 15,
+        "high": 10,
+        "medium": 5,
+        "low": 2
+      },
+      "recency_boost": 5,
+      "engagement_indicators": 3
+    },
+    "sentiment_analysis": {
+      "enabled": true,
+      "confidence_threshold": 0.6,
+      "sentiment_weights": {
+        "bullish": 1.0,
+        "bearish": -1.0,
+        "neutral": 0.0
+      }
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-02-04T05:25:04.257680",
+  "total_articles": 10,
+  "feed_summary": {
+    "reuters_business": {
+      "url": "https://feeds.reuters.com/reuters/businessNews",
+      "article_count": 0,
+      "success": false
+    },
+    "yahoo_finance": {
+      "url": "https://feeds.finance.yahoo.com/rss/2.0/headline",
+      "article_count": 0,
+      "success": false
+    },
+    "marketwatch": {
+      "url": "https://feeds.marketwatch.com/marketwatch/topstories/",
+      "article_count": 10,
+      "success": true
+    }
+  },
+  "high_impact_articles": [
+    {
+      "title": "Trump and Warsh arent holding a joint press conference. What this says about the Feds next chapter.",
+      "link": "https://www.marketwatch.com/story/trump-and-warsh-arent-holding-a-joint-press-conference-it-could-signal-a-new-era-of-less-fed-talk-e8b47a42?mod=mw_rss_topstories",
+      "summary": "Economists have expressed surprise and disappointment about the absence of any public remarks, which had been a routine part of the Fed nomination process going back almost 30 years.",
+      "published": "Wed, 04 Feb 2026 02:40:00 GMT",
+      "id": "WP-MKTW-0004746082",
+      "fetched_at": "2026-02-04T05:25:02.256126",
+      "keywords": [
+        "Fed"
+      ],
+      "impact_score": 3.0
+    }
+  ],
+  "recent_articles": [
+    {
+      "title": "Trump and Warsh arent holding a joint press conference. What this says about the Feds next chapter.",
+      "link": "https://www.marketwatch.com/story/trump-and-warsh-arent-holding-a-joint-press-conference-it-could-signal-a-new-era-of-less-fed-talk-e8b47a42?mod=mw_rss_topstories",
+      "summary": "Economists have expressed surprise and disappointment about the absence of any public remarks, which had been a routine part of the Fed nomination process going back almost 30 years.",
+      "published": "Wed, 04 Feb 2026 02:40:00 GMT",
+      "id": "WP-MKTW-0004746082",
+      "fetched_at": "2026-02-04T05:25:02.256126",
+      "keywords": [
+        "Fed"
+      ],
+      "impact_score": 3.0
+    },
+    {
+      "title": "Chipotles outlook for the year casts doubt on a restaurant-industry rebound",
+      "link": "https://www.marketwatch.com/story/chipotles-outlook-for-the-year-casts-doubt-on-a-restaurant-industry-rebound-9263145b?mod=mw_rss_topstories",
+      "summary": "Shares of Chipotle Mexican Grill Inc. fell sharply after hours on Tuesday, after the fast-casual Mexican chains same-store outlook came in below expectations, and the company outlined steps it planned to take to regain growth.",
+      "published": "Wed, 04 Feb 2026 01:22:00 GMT",
+      "id": "WP-MKTW-0004749851",
+      "fetched_at": "2026-02-04T05:25:02.256442",
+      "keywords": [
+        "IPO"
+      ],
+      "impact_score": 1.5
+    },
+    {
+      "title": "Nvidias stock needs a spark. Heres how it can generate one.",
+      "link": "https://www.marketwatch.com/story/nvidias-stock-needs-a-spark-heres-how-it-can-get-one-c7f5a508?mod=mw_rss_topstories",
+      "summary": "After a stretch of underperformance, Nvidias stock could come alive after earnings, upcoming industry events and the expected launch of new AI models by companies using its Blackwell chips.",
+      "published": "Tue, 03 Feb 2026 23:50:00 GMT",
+      "id": "WP-MKTW-0004747866",
+      "fetched_at": "2026-02-04T05:25:02.256725",
+      "keywords": [
+        "stock",
+        "earnings"
+      ],
+      "impact_score": 1.5
+    },
+    {
+      "title": "Many U.S. households feel like they cant get ahead financially  and theyre right",
+      "link": "https://www.marketwatch.com/story/people-who-work-for-a-paycheck-have-less-money-than-you-think-ec0e7f84?mod=mw_rss_topstories",
+      "summary": "The top wealth holders outpace everyone else.",
+      "published": "Wed, 04 Feb 2026 02:56:00 GMT",
+      "id": "WP-MKTW-0004741485",
+      "fetched_at": "2026-02-04T05:25:02.255841",
+      "keywords": [],
+      "impact_score": 0.0
+    },
+    {
+      "title": "Super Micro logs record revenue from AI demand, and the stock surges",
+      "link": "https://www.marketwatch.com/story/super-micro-logs-record-revenue-from-ai-demand-and-the-stock-surges-f048debe?mod=mw_rss_topstories",
+      "summary": "Super Micros revenue exploded to 12.7 billion as delayed orders finally materialized, but aggressive competition and rising costs pushed gross margins to a razor-thin 6.3",
+      "published": "Wed, 04 Feb 2026 01:24:00 GMT",
+      "id": "WP-MKTW-0004748977",
+      "fetched_at": "2026-02-04T05:25:02.256294",
+      "keywords": [
+        "stock",
+        "revenue"
+      ],
+      "impact_score": 0.0
+    },
+    {
+      "title": "Chase cut my credit-card limit due to lower usage. Will this affect my credit score and lead other banks to do the same?",
+      "link": "https://www.marketwatch.com/story/i-didnt-find-out-until-after-it-was-done-chase-cut-my-credit-card-limit-due-to-low-usage-could-this-affect-my-credit-717075bd?mod=mw_rss_topstories",
+      "summary": "Im wondering whether this could cause a ripple effect in which other banks might do the same with my lesser-used credit cards.",
+      "published": "Wed, 04 Feb 2026 01:11:00 GMT",
+      "id": "WP-MKTW-0004749806",
+      "fetched_at": "2026-02-04T05:25:02.256585",
+      "keywords": [],
+      "impact_score": 0.0
+    },
+    {
+      "title": "Stocks fall as SP 500 dragged down by tech. Is the selling over?",
+      "link": "https://www.marketwatch.com/story/stocks-fall-as-s-p-500-dragged-down-by-tech-is-the-selling-over-ef6fff84?mod=mw_rss_topstories",
+      "summary": "An ETF focused on software stocks just saw its worst day since April 2025.",
+      "published": "Tue, 03 Feb 2026 23:43:00 GMT",
+      "id": "WP-MKTW-0004750592",
+      "fetched_at": "2026-02-04T05:25:02.256847",
+      "keywords": [
+        "stock",
+        "ETF"
+      ],
+      "impact_score": 0.0
+    },
+    {
+      "title": "Im rich in everything but parents: I inherited 400K. Is it unwise to use this money to buy a house with my fiancé?",
+      "link": "https://www.marketwatch.com/story/im-rich-in-everything-but-parents-i-inherited-400k-is-it-unwise-to-use-this-money-to-buy-a-house-with-my-boyfriend-37837138?mod=mw_rss_topstories",
+      "summary": "Im a 40-year-old woman in a committed relationship, and Ive experienced the loss of both of my parents.",
+      "published": "Tue, 03 Feb 2026 23:39:00 GMT",
+      "id": "WP-MKTW-0004739849",
+      "fetched_at": "2026-02-04T05:25:02.256987",
+      "keywords": [
+        "loss"
+      ],
+      "impact_score": 0.0
+    },
+    {
+      "title": "Oracles monster 25 billion debt financing points to anxieties around AI funding",
+      "link": "https://www.marketwatch.com/story/oracles-monster-25-billion-debt-financing-points-to-anxieties-around-ai-funding-b92c634b?mod=mw_rss_topstories",
+      "summary": "Oracle plans to raise up to another 25 billion this year but said the sales would be either equity or equity-linked issuances.",
+      "published": "Tue, 03 Feb 2026 23:00:00 GMT",
+      "id": "WP-MKTW-0004748256",
+      "fetched_at": "2026-02-04T05:25:02.257122",
+      "keywords": [],
+      "impact_score": 0.0
+    },
+    {
+      "title": "Im spooked: Do gold and silver belong in my retirement portfolio after their dramatic fall in value?",
+      "link": "https://www.marketwatch.com/story/im-spooked-do-gold-and-silver-belong-in-my-retirement-portfolio-after-their-dramatic-fall-in-value-a5bc4b3e?mod=mw_rss_topstories",
+      "summary": "Before you ask, there is nothing extreme about 5 of my alternative assets.",
+      "published": "Tue, 03 Feb 2026 22:44:00 GMT",
+      "id": "WP-MKTW-0004747377",
+      "fetched_at": "2026-02-04T05:25:02.257269",
+      "keywords": [],
+      "impact_score": 0.0
+    }
+  ],
+  "keyword_frequency": {
+    "stock": 3,
+    "Fed": 1,
+    "IPO": 1,
+    "earnings": 1,
+    "revenue": 1,
+    "ETF": 1,
+    "loss": 1
+  }
+}

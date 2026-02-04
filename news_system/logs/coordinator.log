@@ -1,0 +1,154 @@
+2026-02-04 05:17:39,725 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:18:39,964 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:18:39,965 - __main__ - INFO - Starting RSS aggregation cycle
+2026-02-04 05:18:40,220 - rss_aggregator - INFO - Database initialized successfully
+2026-02-04 05:18:40,220 - rss_aggregator - INFO - Starting RSS aggregation cycle
+2026-02-04 05:18:40,220 - rss_aggregator - INFO - Processing financial feeds
+2026-02-04 05:18:40,220 - rss_aggregator - INFO - Fetching feed: Reuters Business
+2026-02-04 05:18:40,338 - rss_aggregator - ERROR - Error fetching Reuters Business: <urlopen error [Errno -2] Name or service not known>
+2026-02-04 05:18:40,387 - rss_aggregator - INFO - Fetching feed: Bloomberg Markets
+2026-02-04 05:18:41,187 - rss_aggregator - INFO - Successfully fetched 30 entries from Bloomberg Markets
+2026-02-04 05:18:41,272 - rss_aggregator - INFO - Saved 30 new articles to database
+2026-02-04 05:18:41,272 - rss_aggregator - INFO - Fetching feed: Yahoo Finance
+2026-02-04 05:18:41,462 - rss_aggregator - ERROR - Error fetching Yahoo Finance: HTTP Error 400: Bad Request
+2026-02-04 05:18:41,512 - rss_aggregator - INFO - Fetching feed: MarketWatch
+2026-02-04 05:18:42,062 - rss_aggregator - INFO - Successfully fetched 10 entries from MarketWatch
+2026-02-04 05:18:42,131 - rss_aggregator - INFO - Saved 10 new articles to database
+2026-02-04 05:18:42,131 - rss_aggregator - INFO - Fetching feed: SEC Filings
+2026-02-04 05:18:42,434 - rss_aggregator - ERROR - Error fetching SEC Filings: HTTP Error 403: Forbidden
+2026-02-04 05:18:42,479 - rss_aggregator - INFO - Fetching feed: CNBC Markets
+2026-02-04 05:18:42,679 - rss_aggregator - INFO - Successfully fetched 30 entries from CNBC Markets
+2026-02-04 05:18:42,790 - rss_aggregator - INFO - Saved 30 new articles to database
+2026-02-04 05:18:42,790 - rss_aggregator - INFO - Fetching feed: Financial Times
+2026-02-04 05:18:43,429 - rss_aggregator - ERROR - Error fetching Financial Times: HTTP Error 404: Not Found
+2026-02-04 05:18:43,471 - rss_aggregator - INFO - Processing technology feeds
+2026-02-04 05:18:43,471 - rss_aggregator - INFO - Fetching feed: TechCrunch
+2026-02-04 05:18:43,704 - rss_aggregator - INFO - Successfully fetched 20 entries from TechCrunch
+2026-02-04 05:18:43,774 - rss_aggregator - INFO - Saved 20 new articles to database
+2026-02-04 05:18:43,774 - rss_aggregator - INFO - Fetching feed: VentureBeat
+2026-02-04 05:18:44,204 - rss_aggregator - INFO - Successfully fetched 7 entries from VentureBeat
+2026-02-04 05:18:44,283 - rss_aggregator - INFO - Saved 7 new articles to database
+2026-02-04 05:18:44,283 - rss_aggregator - INFO - Fetching feed: MacRumors
+2026-02-04 05:18:45,630 - rss_aggregator - INFO - Successfully fetched 20 entries from MacRumors
+2026-02-04 05:18:45,709 - rss_aggregator - INFO - Saved 20 new articles to database
+2026-02-04 05:18:45,709 - rss_aggregator - INFO - Fetching feed: The Verge
+2026-02-04 05:18:45,922 - rss_aggregator - INFO - Successfully fetched 10 entries from The Verge
+2026-02-04 05:18:46,009 - rss_aggregator - INFO - Saved 10 new articles to database
+2026-02-04 05:18:46,010 - rss_aggregator - INFO - Fetching feed: Ars Technica
+2026-02-04 05:18:46,280 - rss_aggregator - INFO - Successfully fetched 20 entries from Ars Technica
+2026-02-04 05:18:46,368 - rss_aggregator - INFO - Saved 20 new articles to database
+2026-02-04 05:18:46,369 - rss_aggregator - INFO - Processing business feeds
+2026-02-04 05:18:46,369 - rss_aggregator - INFO - Fetching feed: Harvard Business Review
+2026-02-04 05:18:46,428 - rss_aggregator - ERROR - Error fetching Harvard Business Review: <urlopen error [Errno -2] Name or service not known>
+2026-02-04 05:18:46,480 - rss_aggregator - INFO - Fetching feed: McKinsey Insights
+2026-02-04 05:18:47,064 - rss_aggregator - ERROR - Error fetching McKinsey Insights: HTTP Error 404: Not Found
+2026-02-04 05:18:47,122 - rss_aggregator - INFO - Aggregation complete: 147 fetched, 147 saved
+2026-02-04 05:18:47,122 - __main__ - INFO - RSS aggregation completed: {'total_fetched': 147, 'total_saved': 147, 'feeds_processed': 14, 'timestamp': '2026-02-04T05:18:47.122897'}
+2026-02-04 05:18:49,309 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:18:49,309 - __main__ - INFO - Starting market analysis
+2026-02-04 05:18:49,332 - market_analysis - INFO - Analyzing market conditions for investment timing
+2026-02-04 05:18:49,335 - market_analysis - INFO - Generated investment advice: hold with 89.6% confidence
+2026-02-04 05:18:49,335 - __main__ - INFO - Market analysis completed with hold recommendation
+2026-02-04 05:18:51,281 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:18:51,281 - __main__ - INFO - Starting alert system processing
+2026-02-04 05:18:51,320 - __main__ - ERROR - Alert system failed: cannot import name 'MimeText' from 'email.mime.text' (/usr/lib/python3.12/email/mime/text.py)
+2026-02-04 05:22:06,809 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:22:06,809 - __main__ - INFO - Starting alert system processing
+2026-02-04 05:22:06,856 - __main__ - ERROR - Alert system failed: cannot import name 'MimeText' from 'email.mime.text' (/usr/lib/python3.12/email/mime/text.py)
+2026-02-04 05:23:12,370 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:23:12,370 - __main__ - INFO - Starting alert system processing
+2026-02-04 05:23:12,391 - alert_system - INFO - Starting alert processing cycle
+2026-02-04 05:23:12,405 - __main__ - ERROR - Alert system failed: [Errno 20] Not a directory: '/home/george/projects/clawblogs/news_system/data/rss_aggregator.db/market_analysis.log'
+2026-02-04 05:23:57,143 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:23:57,144 - __main__ - INFO - ================================================================================
+2026-02-04 05:23:57,144 - __main__ - INFO - STARTING FULL NEWS SYSTEM CYCLE
+2026-02-04 05:23:57,144 - __main__ - INFO - ================================================================================
+2026-02-04 05:23:57,144 - __main__ - INFO - Step 1: RSS Feed Aggregation
+2026-02-04 05:23:57,144 - __main__ - INFO - Starting RSS aggregation cycle
+2026-02-04 05:23:57,152 - __main__ - ERROR - RSS aggregation failed: No module named 'feedparser'
+2026-02-04 05:23:57,152 - __main__ - INFO - Step 2: Market Analysis
+2026-02-04 05:23:57,152 - __main__ - INFO - Starting market analysis
+2026-02-04 05:23:57,159 - __main__ - ERROR - Market analysis failed: [Errno 20] Not a directory: '/home/george/projects/clawblogs/news_system/data/rss_aggregator.db/market_analysis.log'
+2026-02-04 05:23:57,160 - __main__ - INFO - Step 3: Smart Alert System
+2026-02-04 05:23:57,160 - __main__ - INFO - Starting alert system processing
+2026-02-04 05:23:57,176 - alert_system - INFO - Starting alert processing cycle
+2026-02-04 05:23:57,176 - __main__ - ERROR - Alert system failed: [Errno 20] Not a directory: '/home/george/projects/clawblogs/news_system/data/rss_aggregator.db/market_analysis.log'
+2026-02-04 05:23:57,176 - __main__ - INFO - ================================================================================
+2026-02-04 05:23:57,177 - __main__ - INFO - CYCLE COMPLETED SUCCESSFULLY
+2026-02-04 05:23:57,177 - __main__ - INFO - Duration: 0.0 seconds
+2026-02-04 05:23:57,177 - __main__ - INFO - Articles processed: 0
+2026-02-04 05:23:57,177 - __main__ - INFO - Alerts generated: 0
+2026-02-04 05:23:57,177 - __main__ - INFO - Market sentiment: unknown
+2026-02-04 05:23:57,177 - __main__ - INFO - ================================================================================
+2026-02-04 05:24:16,837 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:24:16,837 - __main__ - INFO - Starting RSS aggregation cycle
+2026-02-04 05:24:16,844 - __main__ - ERROR - RSS aggregation failed: No module named 'feedparser'
+2026-02-04 05:26:32,979 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:26:32,979 - __main__ - INFO - ================================================================================
+2026-02-04 05:26:32,979 - __main__ - INFO - STARTING FULL NEWS SYSTEM CYCLE
+2026-02-04 05:26:32,979 - __main__ - INFO - ================================================================================
+2026-02-04 05:26:32,979 - __main__ - INFO - Step 1: RSS Feed Aggregation
+2026-02-04 05:26:32,979 - __main__ - INFO - Starting RSS aggregation cycle
+2026-02-04 05:26:33,039 - rss_aggregator - INFO - Database initialized successfully
+2026-02-04 05:26:33,039 - rss_aggregator - INFO - Starting RSS aggregation cycle
+2026-02-04 05:26:33,039 - rss_aggregator - INFO - Processing financial feeds
+2026-02-04 05:26:33,039 - rss_aggregator - INFO - Fetching feed: Reuters Business
+2026-02-04 05:26:33,127 - rss_aggregator - ERROR - Error fetching Reuters Business: <urlopen error [Errno -2] Name or service not known>
+2026-02-04 05:26:33,185 - rss_aggregator - INFO - Fetching feed: Bloomberg Markets
+2026-02-04 05:26:33,594 - rss_aggregator - INFO - Successfully fetched 30 entries from Bloomberg Markets
+2026-02-04 05:26:33,656 - rss_aggregator - INFO - Saved 2 new articles to database
+2026-02-04 05:26:33,656 - rss_aggregator - INFO - Fetching feed: Yahoo Finance
+2026-02-04 05:26:33,825 - rss_aggregator - ERROR - Error fetching Yahoo Finance: HTTP Error 400: Bad Request
+2026-02-04 05:26:33,877 - rss_aggregator - INFO - Fetching feed: MarketWatch
+2026-02-04 05:26:34,310 - rss_aggregator - INFO - Successfully fetched 10 entries from MarketWatch
+2026-02-04 05:26:34,360 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:26:34,361 - rss_aggregator - INFO - Fetching feed: SEC Filings
+2026-02-04 05:26:34,576 - rss_aggregator - ERROR - Error fetching SEC Filings: HTTP Error 403: Forbidden
+2026-02-04 05:26:34,627 - rss_aggregator - INFO - Fetching feed: CNBC Markets
+2026-02-04 05:26:34,819 - rss_aggregator - INFO - Successfully fetched 30 entries from CNBC Markets
+2026-02-04 05:26:34,869 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:26:34,869 - rss_aggregator - INFO - Fetching feed: Financial Times
+2026-02-04 05:26:35,549 - rss_aggregator - ERROR - Error fetching Financial Times: HTTP Error 404: Not Found
+2026-02-04 05:26:35,594 - rss_aggregator - INFO - Processing technology feeds
+2026-02-04 05:26:35,595 - rss_aggregator - INFO - Fetching feed: TechCrunch
+2026-02-04 05:26:35,811 - rss_aggregator - INFO - Successfully fetched 20 entries from TechCrunch
+2026-02-04 05:26:35,861 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:26:35,861 - rss_aggregator - INFO - Fetching feed: VentureBeat
+2026-02-04 05:26:36,261 - rss_aggregator - INFO - Successfully fetched 7 entries from VentureBeat
+2026-02-04 05:26:36,319 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:26:36,320 - rss_aggregator - INFO - Fetching feed: MacRumors
+2026-02-04 05:26:36,603 - rss_aggregator - INFO - Successfully fetched 20 entries from MacRumors
+2026-02-04 05:26:36,661 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:26:36,661 - rss_aggregator - INFO - Fetching feed: The Verge
+2026-02-04 05:26:36,895 - rss_aggregator - INFO - Successfully fetched 10 entries from The Verge
+2026-02-04 05:26:36,945 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:26:36,945 - rss_aggregator - INFO - Fetching feed: Ars Technica
+2026-02-04 05:26:37,128 - rss_aggregator - INFO - Successfully fetched 20 entries from Ars Technica
+2026-02-04 05:26:37,178 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:26:37,178 - rss_aggregator - INFO - Processing business feeds
+2026-02-04 05:26:37,178 - rss_aggregator - INFO - Fetching feed: Harvard Business Review
+2026-02-04 05:26:37,239 - rss_aggregator - ERROR - Error fetching Harvard Business Review: <urlopen error [Errno -2] Name or service not known>
+2026-02-04 05:26:37,295 - rss_aggregator - INFO - Fetching feed: McKinsey Insights
+2026-02-04 05:26:37,936 - rss_aggregator - ERROR - Error fetching McKinsey Insights: HTTP Error 404: Not Found
+2026-02-04 05:26:37,987 - rss_aggregator - INFO - Aggregation complete: 147 fetched, 147 saved
+2026-02-04 05:26:37,987 - __main__ - INFO - RSS aggregation completed: {'total_fetched': 147, 'total_saved': 147, 'feeds_processed': 14, 'timestamp': '2026-02-04T05:26:37.987547'}
+2026-02-04 05:26:37,987 - __main__ - INFO - Step 2: Market Analysis
+2026-02-04 05:26:37,987 - __main__ - INFO - Starting market analysis
+2026-02-04 05:26:38,009 - market_analysis - INFO - Analyzing market conditions for investment timing
+2026-02-04 05:26:38,013 - market_analysis - INFO - Generated investment advice: hold with 89.6% confidence
+2026-02-04 05:26:38,014 - __main__ - INFO - Market analysis completed with hold recommendation
+2026-02-04 05:26:38,014 - __main__ - INFO - Step 3: Smart Alert System
+2026-02-04 05:26:38,014 - __main__ - INFO - Starting alert system processing
+2026-02-04 05:26:38,027 - alert_system - INFO - Starting alert processing cycle
+2026-02-04 05:26:38,027 - market_analysis - INFO - Analyzing market conditions for investment timing
+2026-02-04 05:26:38,031 - market_analysis - INFO - Generated investment advice: hold with 89.6% confidence
+2026-02-04 05:26:38,033 - alert_system - INFO - ALERT: Market Signal: Earnings Impact - Market signal detected: Earnings or revenue-related news with potential market impact. Strength: 6/10. Confidence: 70.0%. Action: Consider adjusting position based on signal strength.
+2026-02-04 05:26:38,033 - alert_system - INFO - Alert processing complete: 1 delivered, 0 failed
+2026-02-04 05:26:38,033 - __main__ - INFO - Alert system processed 1 alerts
+2026-02-04 05:26:38,033 - __main__ - INFO - ================================================================================
+2026-02-04 05:26:38,033 - __main__ - INFO - CYCLE COMPLETED SUCCESSFULLY
+2026-02-04 05:26:38,034 - __main__ - INFO - Duration: 5.1 seconds
+2026-02-04 05:26:38,034 - __main__ - INFO - Articles processed: 147
+2026-02-04 05:26:38,034 - __main__ - INFO - Alerts generated: 1
+2026-02-04 05:26:38,034 - __main__ - INFO - Market sentiment: neutral
+2026-02-04 05:26:38,034 - __main__ - INFO - ================================================================================
