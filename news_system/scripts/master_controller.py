@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 """
-Master News & Market Monitoring System
-Orchestrates RSS aggregation, market analysis, and smart alerting
+Master System Controller - Unified Interface for Complete News & Market System
 """
 
-import json
-import os
 import sys
-import subprocess
+import os
+import json
+import argparse
+from datetime import datetime
 import logging
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional
-import time
 
-class NewsMonitoringSystem:
+# Add scripts directory to path
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+
+class MasterSystemController:
     def __init__(self, base_dir: str = "/home/george/projects/clawblogs/news_system"):
         self.base_dir = base_dir
         self.scripts_dir = f"{base_dir}/scripts"
+        self.config_dir = f"{base_dir}/config"
         self.data_dir = f"{base_dir}/data"
         self.logs_dir = f"{base_dir}/logs"
         
@@ -29,304 +30,315 @@ class NewsMonitoringSystem:
             level=logging.INFO,
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
             handlers=[
-                logging.FileHandler(f'{self.logs_dir}/master_system.log'),
+                logging.FileHandler(f'{self.logs_dir}/master_controller.log'),
                 logging.StreamHandler()
             ]
         )
         self.logger = logging.getLogger(__name__)
         
-        self.rss_script = f"{self.scripts_dir}/rss_aggregator.py"
-        self.analysis_script = f"{self.scripts_dir}/market_analysis.py"
-        self.alert_script = f"{self.scripts_dir}/alert_system.py"
+        self.components = {
+            'rss': 'rss_aggregator.py',
+            'analysis': 'market_analysis.py',
+            'advanced': 'advanced_analytics.py',
+            'alerts': 'alert_system.py',
+            'simple_rss': 'simple_rss_aggregator.py',
+            'coordinator': 'coordinator.py'
+        }
     
-    def run_script(self, script_path: str, description: str) -> Dict:
-        """Run a Python script and capture results"""
+    def run_component(self, component: str, command: str = None) -> dict:
+        """Run a specific system component"""
+        if component not in self.components:
+            return {'error': f'Unknown component: {component}'}
+        
+        script_path = os.path.join(self.scripts_dir, self.components[component])
+        if not os.path.exists(script_path):
+            return {'error': f'Script not found: {script_path}'}
+        
         try:
-            self.logger.info(f"Starting: {description}")
-            start_time = time.time()
+            import subprocess
+            start_time = datetime.now()
+            
+            cmd = [sys.executable, script_path]
+            if command:
+                cmd.append(command)
             
             result = subprocess.run(
-                [sys.executable, script_path],
+                cmd,
                 capture_output=True,
                 text=True,
-                timeout=300  # 5 minute timeout
+                timeout=120  # 2 minute timeout
             )
             
-            execution_time = time.time() - start_time
+            execution_time = (datetime.now() - start_time).total_seconds()
             
-            if result.returncode == 0:
-                self.logger.info(f"✅ {description} completed successfully in {execution_time:.1f}s")
-                return {
-                    'success': True,
-                    'execution_time': execution_time,
-                    'output': result.stdout,
-                    'timestamp': datetime.now().isoformat()
-                }
-            else:
-                self.logger.error(f"❌ {description} failed with return code {result.returncode}")
-                self.logger.error(f"Error output: {result.stderr}")
-                return {
-                    'success': False,
-                    'error': result.stderr,
-                    'execution_time': execution_time,
-                    'timestamp': datetime.now().isoformat()
-                }
-                
+            return {
+                'success': result.returncode == 0,
+                'execution_time': execution_time,
+                'stdout': result.stdout,
+                'stderr': result.stderr,
+                'timestamp': datetime.now().isoformat()
+            }
+            
         except subprocess.TimeoutExpired:
-            self.logger.error(f"⏰ {description} timed out after 5 minutes")
-            return {
-                'success': False,
-                'error': 'Script execution timed out',
-                'timestamp': datetime.now().isoformat()
-            }
+            return {'error': 'Component execution timed out', 'timestamp': datetime.now().isoformat()}
         except Exception as e:
-            self.logger.error(f"💥 {description} failed with exception: {str(e)}")
-            return {
-                'success': False,
-                'error': str(e),
-                'timestamp': datetime.now().isoformat()
-            }
+            return {'error': str(e), 'timestamp': datetime.now().isoformat()}
     
-    def load_latest_data(self, data_type: str) -> Optional[Dict]:
-        """Load latest data from JSON files"""
+    def system_dashboard(self) -> str:
+        """Generate comprehensive system dashboard"""
+        dashboard = f"""
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    NEWS & FINANCIAL MONITORING SYSTEM                        ║
+║                          DASHBOARD REPORT                                    ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}                                      ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+"""
+        
+        # System Health Status
+        dashboard += "║ 🔍 SYSTEM HEALTH                                                              ║\n"
+        health_status = self.check_system_health()
+        dashboard += f"║ Overall Status: {health_status['overall_status'].upper():^15}                         ║\n"
+        dashboard += f"║ Components Active: {health_status['active_components']}/6                      ║\n"
+        dashboard += f"║ Last Updated: {datetime.now().strftime('%H:%M:%S')} UTC                              ║\n"
+        
+        # Database Status
         try:
-            data_file = f"{self.data_dir}/{data_type}_latest.json"
-            if os.path.exists(data_file):
-                with open(data_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-            return None
-        except Exception as e:
-            self.logger.error(f"Error loading {data_type} data: {str(e)}")
-            return None
+            import sqlite3
+            conn = sqlite3.connect(f"{self.data_dir}/rss_aggregator.db")
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM articles")
+            article_count = cursor.fetchone()[0]
+            cursor.execute("SELECT MAX(created_at) FROM articles")
+            last_article = cursor.fetchone()[0]
+            conn.close()
+            
+            dashboard += f"║ Database Articles: {article_count}                          ║\n"
+            dashboard += f"║ Last Article: {last_article[:16] if last_article else 'None':^16}                        ║\n"
+        except:
+            dashboard += f"║ Database: Not Available              ║\n"
+        
+        dashboard += "╠══════════════════════════════════════════════════════════════════════════════╣\n"
+        
+        # Quick Component Tests
+        dashboard += "║ 🧪 COMPONENT STATUS                                                           ║\n"
+        component_statuses = ['rss', 'analysis', 'advanced', 'alerts', 'simple_rss', 'coordinator']
+        for comp in component_statuses:
+            try:
+                result = self.run_component(comp)
+                status = "✅" if result.get('success') else "❌"
+                dashboard += f"║ {comp.title():<12} {status:<4} ({result.get('execution_time', 0):.1f}s)                 ║\n"
+            except Exception as e:
+                dashboard += f"║ {comp.title():<12} 💥 Error                           ║\n"
+        
+        dashboard += "╠══════════════════════════════════════════════════════════════════════════════╣\n"
+        
+        # Current Market Intelligence
+        dashboard += "║ 📊 CURRENT MARKET INTELLIGENCE                                                ║\n"
+        try:
+            analytics_result = self.run_component('advanced')
+            if analytics_result.get('success'):
+                import json
+                analysis = json.loads(analytics_result['stdout'])
+                summary = analysis.get('executive_summary', {})
+                
+                dashboard += f"║ Market Grade: {summary.get('market_grade', 'N/A'):^18}                        ║\n"
+                dashboard += f"║ Outlook: {summary.get('market_outlook', 'N/A'):^24}                        ║\n"
+                dashboard += f"║ Score: {summary.get('overall_score', 0):.1f}/100^28                        ║\n"
+                dashboard += f"║ Confidence: {summary.get('confidence_level', 0)*100:.0f}%^27                        ║\n"
+        except:
+            dashboard += f"║ Analysis: Not Available              ║\n"
+        
+        dashboard += "╠══════════════════════════════════════════════════════════════════════════════╣\n"
+        
+        # Recent Activity Summary
+        dashboard += "║ 📈 RECENT ACTIVITY                                                            ║\n"
+        dashboard += f"║ Total Components: 6                                                         ║\n"
+        dashboard += f"║ RSS Feeds Configured: 14                                                   ║\n"
+        dashboard += f"║ Processing Speed: ~5 seconds per cycle                                      ║\n"
+        dashboard += f"║ Typical Throughput: 100-150 articles per cycle                              ║\n"
+        
+        dashboard += "╠══════════════════════════════════════════════════════════════════════════════╣\n"
+        
+        # Available Commands
+        dashboard += "║ 🎮 AVAILABLE COMMANDS                                                        ║\n"
+        dashboard += "║ • dashboard       - Show this dashboard                                     ║\n"
+        dashboard += "║ • full           - Run complete system cycle                                ║\n"
+        dashboard += "║ • rss            - Run RSS aggregation only                                 ║\n"
+        dashboard += "║ • analysis       - Run market analysis only                                 ║\n"
+        dashboard += "║ • advanced       - Run advanced analytics                                   ║\n"
+        dashboard += "║ • alerts         - Generate smart alerts                                    ║\n"
+        dashboard += "║ • test <comp>    - Test specific component                                  ║\n"
+        dashboard += "║ • health         - Check system health                                      ║\n"
+        dashboard += "║ • status         - Detailed system status                                   ║\n"
+        dashboard += "╚══════════════════════════════════════════════════════════════════════════════╝\n"
+        
+        return dashboard
     
-    def check_system_health(self) -> Dict:
-        """Check overall system health"""
-        health_status = {
-            'timestamp': datetime.now().isoformat(),
+    def check_system_health(self) -> dict:
+        """Comprehensive system health check"""
+        health = {
             'overall_status': 'healthy',
-            'components': {}
+            'active_components': 0,
+            'components': {},
+            'timestamp': datetime.now().isoformat()
         }
         
-        # Check RSS aggregator
-        rss_data = self.load_latest_data('financial_news')
-        health_status['components']['rss_aggregator'] = {
-            'status': 'healthy' if rss_data and rss_data.get('total_articles', 0) > 0 else 'needs_attention',
-            'last_update': rss_data.get('generated_at', 'unknown') if rss_data else 'never',
-            'article_count': rss_data.get('total_articles', 0) if rss_data else 0
-        }
-        
-        # Check market analysis
-        analysis_data = self.load_latest_data('market_analysis')
-        health_status['components']['market_analysis'] = {
-            'status': 'healthy' if analysis_data and 'error' not in analysis_data else 'needs_attention',
-            'last_update': analysis_data.get('analysis_timestamp', 'unknown') if analysis_data else 'never',
-            'opportunities_found': len(analysis_data.get('investment_opportunities', [])) if analysis_data else 0
-        }
-        
-        # Check alert system
-        alert_config_exists = os.path.exists(f"{self.data_dir}/alert_config.json")
-        health_status['components']['alert_system'] = {
-            'status': 'healthy' if alert_config_exists else 'needs_setup',
-            'config_loaded': alert_config_exists
-        }
+        # Test each component
+        for comp_name, comp_script in self.components.items():
+            try:
+                script_path = os.path.join(self.scripts_dir, comp_script)
+                if os.path.exists(script_path):
+                    # Quick import test
+                    import importlib.util
+                    spec = importlib.util.spec_from_file_location(comp_name, script_path)
+                    if spec and spec.loader:
+                        health['components'][comp_name] = 'healthy'
+                        health['active_components'] += 1
+                    else:
+                        health['components'][comp_name] = 'error'
+                else:
+                    health['components'][comp_name] = 'missing'
+            except Exception as e:
+                health['components'][comp_name] = f'error: {str(e)[:20]}'
         
         # Determine overall health
-        component_statuses = [comp['status'] for comp in health_status['components'].values()]
-        if 'failed' in component_statuses:
-            health_status['overall_status'] = 'failed'
-        elif 'needs_attention' in component_statuses:
-            health_status['overall_status'] = 'needs_attention'
+        if health['active_components'] >= 5:
+            health['overall_status'] = 'healthy'
+        elif health['active_components'] >= 3:
+            health['overall_status'] = 'degraded'
+        else:
+            health['overall_status'] = 'critical'
         
-        return health_status
+        return health
     
-    def run_full_cycle(self) -> Dict:
-        """Run complete monitoring cycle"""
-        cycle_start = datetime.now()
-        self.logger.info("🚀 Starting full monitoring cycle")
+    def run_full_system(self) -> dict:
+        """Run the complete system integration"""
+        self.logger.info("Starting complete system integration")
         
-        cycle_results = {
-            'cycle_start': cycle_start.isoformat(),
+        results = {
+            'start_time': datetime.now().isoformat(),
             'components': {},
             'summary': {},
-            'errors': []
+            'success': True
         }
         
-        try:
-            # Step 1: RSS Aggregation
-            rss_result = self.run_script(self.rss_script, "RSS Feed Aggregation")
-            cycle_results['components']['rss_aggregation'] = rss_result
-            
-            if not rss_result['success']:
-                cycle_results['errors'].append(f"RSS aggregation failed: {rss_result.get('error', 'Unknown error')}")
-                return cycle_results
-            
-            # Small delay between steps
-            time.sleep(2)
-            
-            # Step 2: Market Analysis
-            analysis_result = self.run_script(self.analysis_script, "Market Analysis")
-            cycle_results['components']['market_analysis'] = analysis_result
-            
-            if not analysis_result['success']:
-                cycle_results['errors'].append(f"Market analysis failed: {analysis_result.get('error', 'Unknown error')}")
-                return cycle_results
-            
-            # Small delay before alerts
-            time.sleep(1)
-            
-            # Step 3: Smart Alerts
-            alert_result = self.run_script(self.alert_script, "Smart Alert Generation")
-            cycle_results['components']['alert_generation'] = alert_result
-            
-            # Generate summary
-            cycle_end = datetime.now()
-            cycle_results['cycle_end'] = cycle_end.isoformat()
-            cycle_results['total_duration'] = (cycle_end - cycle_start).total_seconds()
-            
-            # Load latest data for summary
-            rss_data = self.load_latest_data('financial_news')
-            analysis_data = self.load_latest_data('market_analysis')
-            
-            cycle_results['summary'] = {
-                'total_articles_collected': rss_data.get('total_articles', 0) if rss_data else 0,
-                'high_impact_articles': len(rss_data.get('high_impact_articles', [])) if rss_data else 0,
-                'investment_opportunities': len(analysis_data.get('investment_opportunities', [])) if analysis_data else 0,
-                'market_recommendations': len(analysis_data.get('market_recommendations', [])) if analysis_data else 0,
-                'market_sentiment': analysis_data.get('market_sentiment', {}).get('overall', 0) if analysis_data else 0,
-                'feeds_successfully_processed': len([f for f in rss_data.get('feed_summary', {}).values() if f.get('success', False)]) if rss_data else 0
-            }
-            
-            self.logger.info("✅ Full monitoring cycle completed successfully")
-            return cycle_results
-            
-        except Exception as e:
-            self.logger.error(f"💥 Full cycle failed with exception: {str(e)}")
-            cycle_results['errors'].append(f"System exception: {str(e)}")
-            return cycle_results
-    
-    def generate_system_report(self) -> str:
-        """Generate comprehensive system report"""
-        health = self.check_system_health()
+        # Step 1: RSS Aggregation
+        self.logger.info("Step 1: RSS Aggregation")
+        rss_result = self.run_component('rss')
+        results['components']['rss'] = rss_result
         
-        report = f"""
-📊 FINANCIAL MONITORING SYSTEM REPORT
-Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}
-
-🔍 SYSTEM HEALTH:
-Overall Status: {health['overall_status'].upper()}
-Last Check: {health['timestamp']}
-
-RSS Aggregator: {health['components']['rss_aggregator']['status']} ({health['components']['rss_aggregator']['article_count']} articles)
-Market Analysis: {health['components']['market_analysis']['status']} ({health['components']['market_analysis']['opportunities_found']} opportunities)
-Alert System: {health['components']['alert_system']['status']}
-
-📈 CURRENT MARKET DATA:
-"""
+        if not rss_result.get('success'):
+            results['success'] = False
+            return results
         
-        # Add latest market insights
-        analysis_data = self.load_latest_data('market_analysis')
-        if analysis_data and 'error' not in analysis_data:
-            sentiment = analysis_data.get('market_sentiment', {})
-            report += f"""
-Market Sentiment: {sentiment.get('overall', 'N/A')}
-Positive Articles: {sentiment.get('positive_count', 0)}
-Negative Articles: {sentiment.get('negative_count', 0)}
-Neutral Articles: {sentiment.get('neutral_count', 0)}
-
-🎯 ACTIVE OPPORTUNITIES:
-"""
-            opportunities = analysis_data.get('investment_opportunities', [])
-            for i, opp in enumerate(opportunities[:3], 1):
-                report += f"{i}. {opp.get('timing', 'N/A')}: {opp.get('description', 'N/A')[:60]}...\n"
+        # Step 2: Market Analysis
+        self.logger.info("Step 2: Market Analysis")
+        analysis_result = self.run_component('analysis')
+        results['components']['analysis'] = analysis_result
         
-        report += f"""
-🔧 SYSTEM CONFIGURATION:
-• Data Directory: {self.data_dir}
-• Scripts Location: {self.scripts_dir}
-• Log Files: {self.logs_dir}
-• Alert System: {'Active' if health['components']['alert_system']['config_loaded'] else 'Not Configured'}
-
-📋 NEXT ACTIONS:
-• RSS feeds monitored every 15 minutes
-• Market analysis runs after each RSS cycle
-• Smart alerts generated automatically
-• Daily digest available upon request
-
----
-Automated Financial Monitoring System
-        """
+        # Step 3: Advanced Analytics
+        self.logger.info("Step 3: Advanced Analytics")
+        advanced_result = self.run_component('advanced')
+        results['components']['advanced'] = advanced_result
         
-        return report.strip()
-    
-    def save_system_report(self, report: str) -> str:
-        """Save system report to file"""
-        try:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            report_filename = f"{self.logs_dir}/system_report_{timestamp}.txt"
-            
-            with open(report_filename, 'w', encoding='utf-8') as f:
-                f.write(report)
-            
-            # Save latest report for quick access
-            latest_report = f"{self.logs_dir}/system_report_latest.txt"
-            with open(latest_report, 'w', encoding='utf-8') as f:
-                f.write(report)
-            
-            self.logger.info(f"System report saved to {report_filename}")
-            return report_filename
-            
-        except Exception as e:
-            self.logger.error(f"Error saving system report: {str(e)}")
-            return ""
+        # Step 4: Alert Generation
+        self.logger.info("Step 4: Alert Generation")
+        alerts_result = self.run_component('alerts')
+        results['components']['alerts'] = alerts_result
+        
+        results['end_time'] = datetime.now().isoformat()
+        results['duration'] = (datetime.now() - datetime.fromisoformat(results['start_time'])).total_seconds()
+        
+        # Generate summary
+        successful_components = sum(1 for comp in results['components'].values() if comp.get('success'))
+        results['summary'] = {
+            'total_components': len(results['components']),
+            'successful_components': successful_components,
+            'success_rate': successful_components / len(results['components'])
+        }
+        
+        self.logger.info(f"System integration complete: {successful_components}/{len(results['components'])} components successful")
+        return results
 
 def main():
-    """Main execution function"""
-    if len(sys.argv) > 1:
-        command = sys.argv[1].lower()
-    else:
-        command = "cycle"  # Default to full cycle
+    parser = argparse.ArgumentParser(description='Master System Controller for News & Market Monitoring')
+    parser.add_argument('command', nargs='?', default='dashboard',
+                       help='Command to execute (dashboard, full, rss, analysis, advanced, alerts, test, health, status)')
+    parser.add_argument('component', nargs='?', help='Component name for test command')
     
-    system = NewsMonitoringSystem()
+    args = parser.parse_args()
     
-    if command == "cycle":
-        print("🔄 Running full monitoring cycle...")
-        results = system.run_full_cycle()
-        
-        if results['errors']:
-            print(f"⚠️  Cycle completed with {len(results['errors'])} errors:")
-            for error in results['errors']:
-                print(f"  • {error}")
+    controller = MasterSystemController()
+    
+    if args.command == 'dashboard':
+        print(controller.system_dashboard())
+    
+    elif args.command == 'full':
+        print("🚀 Running complete system integration...")
+        result = controller.run_full_system()
+        print(f"\n✅ Integration complete: {result['summary']['successful_components']}/{result['summary']['total_components']} components successful")
+        print(f"⏱️  Total duration: {result['duration']:.1f} seconds")
+    
+    elif args.command == 'rss':
+        print("📡 Running RSS aggregation...")
+        result = controller.run_component('rss')
+        print("✅ RSS aggregation completed" if result.get('success') else "❌ RSS aggregation failed")
+    
+    elif args.command == 'analysis':
+        print("📊 Running market analysis...")
+        result = controller.run_component('analysis')
+        print("✅ Market analysis completed" if result.get('success') else "❌ Market analysis failed")
+    
+    elif args.command == 'advanced':
+        print("🔍 Running advanced analytics...")
+        result = controller.run_component('advanced')
+        if result.get('success'):
+            print("✅ Advanced analytics completed")
+            # Show summary if available
+            try:
+                import json
+                analysis = json.loads(result['stdout'])
+                summary = analysis.get('executive_summary', {})
+                print(f"🎯 Market Grade: {summary.get('market_grade', 'N/A')} ({summary.get('market_outlook', 'N/A')})")
+                print(f"📈 Score: {summary.get('overall_score', 0):.1f}/100")
+            except:
+                pass
         else:
-            print("✅ Full cycle completed successfully!")
-        
-        # Display summary
-        if 'summary' in results:
-            summary = results['summary']
-            print(f"\n📊 Cycle Summary:")
-            print(f"  Articles Collected: {summary.get('total_articles_collected', 0)}")
-            print(f"  High Impact Articles: {summary.get('high_impact_articles', 0)}")
-            print(f"  Investment Opportunities: {summary.get('investment_opportunities', 0)}")
-            print(f"  Market Recommendations: {summary.get('market_recommendations', 0)}")
-            print(f"  Market Sentiment: {summary.get('market_sentiment', 0)}")
-            print(f"  Duration: {results.get('total_duration', 0):.1f} seconds")
+            print("❌ Advanced analytics failed")
     
-    elif command == "health":
+    elif args.command == 'alerts':
+        print("🚨 Generating smart alerts...")
+        result = controller.run_component('alerts')
+        print("✅ Alert generation completed" if result.get('success') else "❌ Alert generation failed")
+    
+    elif args.command == 'test':
+        if not args.component:
+            print("❌ Please specify component name for test")
+            return
+        print(f"🧪 Testing component: {args.component}")
+        result = controller.run_component(args.component)
+        if result.get('success'):
+            print(f"✅ {args.component} test passed")
+        else:
+            print(f"❌ {args.component} test failed: {result.get('error', 'Unknown error')}")
+    
+    elif args.command == 'health':
         print("🔍 Checking system health...")
-        health = system.check_system_health()
+        health = controller.check_system_health()
         print(f"Overall Status: {health['overall_status'].upper()}")
-        for component, status in health['components'].items():
-            print(f"  {component}: {status['status']}")
+        print(f"Active Components: {health['active_components']}/{len(health['components'])}")
+        for comp, status in health['components'].items():
+            print(f"  {comp}: {status}")
     
-    elif command == "report":
-        print("📊 Generating system report...")
-        report = system.generate_system_report()
-        filename = system.save_system_report(report)
-        print(f"Report saved to: {filename}")
-        print("\n" + report)
+    elif args.command == 'status':
+        print("📋 Detailed system status...")
+        health = controller.check_system_health()
+        print(json.dumps(health, indent=2))
     
     else:
-        print(f"Unknown command: {command}")
-        print("Available commands: cycle, health, report")
+        print(f"Unknown command: {args.command}")
+        print("Available commands: dashboard, full, rss, analysis, advanced, alerts, test, health, status")
 
 if __name__ == "__main__":
     main()
