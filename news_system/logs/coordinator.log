@@ -152,3 +152,73 @@
 2026-02-04 05:26:38,034 - __main__ - INFO - Alerts generated: 1
 2026-02-04 05:26:38,034 - __main__ - INFO - Market sentiment: neutral
 2026-02-04 05:26:38,034 - __main__ - INFO - ================================================================================
+2026-02-04 05:31:08,548 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:31:08,705 - __main__ - INFO - News System Coordinator initialized
+2026-02-04 05:31:08,705 - __main__ - INFO - ================================================================================
+2026-02-04 05:31:08,705 - __main__ - INFO - STARTING FULL NEWS SYSTEM CYCLE
+2026-02-04 05:31:08,705 - __main__ - INFO - ================================================================================
+2026-02-04 05:31:08,705 - __main__ - INFO - Step 1: RSS Feed Aggregation
+2026-02-04 05:31:08,705 - __main__ - INFO - Starting RSS aggregation cycle
+2026-02-04 05:31:08,760 - rss_aggregator - INFO - Database initialized successfully
+2026-02-04 05:31:08,760 - rss_aggregator - INFO - Starting RSS aggregation cycle
+2026-02-04 05:31:08,760 - rss_aggregator - INFO - Processing financial feeds
+2026-02-04 05:31:08,760 - rss_aggregator - INFO - Fetching feed: Reuters Business
+2026-02-04 05:31:08,850 - rss_aggregator - ERROR - Error fetching Reuters Business: <urlopen error [Errno -2] Name or service not known>
+2026-02-04 05:31:08,931 - rss_aggregator - INFO - Fetching feed: Bloomberg Markets
+2026-02-04 05:31:09,332 - rss_aggregator - INFO - Successfully fetched 30 entries from Bloomberg Markets
+2026-02-04 05:31:09,414 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:31:09,415 - rss_aggregator - INFO - Fetching feed: Yahoo Finance
+2026-02-04 05:31:09,577 - rss_aggregator - ERROR - Error fetching Yahoo Finance: HTTP Error 400: Bad Request
+2026-02-04 05:31:09,631 - rss_aggregator - INFO - Fetching feed: MarketWatch
+2026-02-04 05:31:10,115 - rss_aggregator - INFO - Successfully fetched 10 entries from MarketWatch
+2026-02-04 05:31:10,173 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:31:10,173 - rss_aggregator - INFO - Fetching feed: SEC Filings
+2026-02-04 05:31:10,354 - rss_aggregator - ERROR - Error fetching SEC Filings: HTTP Error 403: Forbidden
+2026-02-04 05:31:10,398 - rss_aggregator - INFO - Fetching feed: CNBC Markets
+2026-02-04 05:31:10,673 - rss_aggregator - INFO - Successfully fetched 30 entries from CNBC Markets
+2026-02-04 05:31:10,715 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:31:10,715 - rss_aggregator - INFO - Fetching feed: Financial Times
+2026-02-04 05:31:11,511 - rss_aggregator - ERROR - Error fetching Financial Times: HTTP Error 404: Not Found
+2026-02-04 05:31:11,565 - rss_aggregator - INFO - Processing technology feeds
+2026-02-04 05:31:11,566 - rss_aggregator - INFO - Fetching feed: TechCrunch
+2026-02-04 05:31:11,782 - rss_aggregator - INFO - Successfully fetched 20 entries from TechCrunch
+2026-02-04 05:31:11,823 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:31:11,824 - rss_aggregator - INFO - Fetching feed: VentureBeat
+2026-02-04 05:31:12,182 - rss_aggregator - INFO - Successfully fetched 7 entries from VentureBeat
+2026-02-04 05:31:12,224 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:31:12,224 - rss_aggregator - INFO - Fetching feed: MacRumors
+2026-02-04 05:31:12,782 - rss_aggregator - INFO - Successfully fetched 20 entries from MacRumors
+2026-02-04 05:31:12,824 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:31:12,824 - rss_aggregator - INFO - Fetching feed: The Verge
+2026-02-04 05:31:13,024 - rss_aggregator - INFO - Successfully fetched 10 entries from The Verge
+2026-02-04 05:31:13,066 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:31:13,066 - rss_aggregator - INFO - Fetching feed: Ars Technica
+2026-02-04 05:31:13,257 - rss_aggregator - INFO - Successfully fetched 20 entries from Ars Technica
+2026-02-04 05:31:13,299 - rss_aggregator - INFO - Saved 0 new articles to database
+2026-02-04 05:31:13,299 - rss_aggregator - INFO - Processing business feeds
+2026-02-04 05:31:13,299 - rss_aggregator - INFO - Fetching feed: Harvard Business Review
+2026-02-04 05:31:13,332 - rss_aggregator - ERROR - Error fetching Harvard Business Review: <urlopen error [Errno -2] Name or service not known>
+2026-02-04 05:31:13,391 - rss_aggregator - INFO - Fetching feed: McKinsey Insights
+2026-02-04 05:31:13,763 - rss_aggregator - ERROR - Error fetching McKinsey Insights: HTTP Error 404: Not Found
+2026-02-04 05:31:13,824 - rss_aggregator - INFO - Aggregation complete: 147 fetched, 147 saved
+2026-02-04 05:31:13,825 - __main__ - INFO - RSS aggregation completed: {'total_fetched': 147, 'total_saved': 147, 'feeds_processed': 14, 'timestamp': '2026-02-04T05:31:13.825029'}
+2026-02-04 05:31:13,825 - __main__ - INFO - Step 2: Market Analysis
+2026-02-04 05:31:13,825 - __main__ - INFO - Starting market analysis
+2026-02-04 05:31:13,838 - market_analysis - INFO - Analyzing market conditions for investment timing
+2026-02-04 05:31:13,842 - market_analysis - INFO - Generated investment advice: hold with 89.6% confidence
+2026-02-04 05:31:13,843 - __main__ - INFO - Market analysis completed with hold recommendation
+2026-02-04 05:31:13,843 - __main__ - INFO - Step 3: Smart Alert System
+2026-02-04 05:31:13,843 - __main__ - INFO - Starting alert system processing
+2026-02-04 05:31:13,846 - alert_system - INFO - Starting alert processing cycle
+2026-02-04 05:31:13,846 - market_analysis - INFO - Analyzing market conditions for investment timing
+2026-02-04 05:31:13,851 - market_analysis - INFO - Generated investment advice: hold with 89.6% confidence
+2026-02-04 05:31:13,852 - alert_system - INFO - ALERT: Market Signal: Earnings Impact - Market signal detected: Earnings or revenue-related news with potential market impact. Strength: 6/10. Confidence: 70.0%. Action: Consider adjusting position based on signal strength.
+2026-02-04 05:31:13,853 - alert_system - INFO - Alert processing complete: 1 delivered, 0 failed
+2026-02-04 05:31:13,853 - __main__ - INFO - Alert system processed 1 alerts
+2026-02-04 05:31:13,853 - __main__ - INFO - ================================================================================
+2026-02-04 05:31:13,853 - __main__ - INFO - CYCLE COMPLETED SUCCESSFULLY
+2026-02-04 05:31:13,853 - __main__ - INFO - Duration: 5.1 seconds
+2026-02-04 05:31:13,853 - __main__ - INFO - Articles processed: 147
+2026-02-04 05:31:13,854 - __main__ - INFO - Alerts generated: 1
+2026-02-04 05:31:13,854 - __main__ - INFO - Market sentiment: neutral
+2026-02-04 05:31:13,854 - __main__ - INFO - ================================================================================
